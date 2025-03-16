@@ -5,4 +5,4 @@ headers = {"Content-Type": "application/json"}
 data = {"title": "Buy groceries"}
 
 response = requests.post(url, json=data, headers=headers)
-print(response.json())  # Show API response
+print(response.json())  

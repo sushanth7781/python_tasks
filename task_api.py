@@ -2,15 +2,15 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Sample task list (temporary storage)
+
 tasks = []
 
-# Get all tasks
+
 @app.route("/tasks", methods=["GET"])
 def get_tasks():
     return jsonify(tasks)
 
-# Add a new task
+
 @app.route("/tasks", methods=["POST"])
 def add_task():
     if not request.json or "title" not in request.json:
@@ -24,7 +24,7 @@ def add_task():
     tasks.append(task)
     return jsonify({"message": "Task added", "task": task}), 201
 
-# Update a task by ID
+
 @app.route("/tasks/<int:task_id>", methods=["PUT"])
 def update_task(task_id):
     task = next((t for t in tasks if t["id"] == task_id), None)
@@ -35,7 +35,7 @@ def update_task(task_id):
     task["completed"] = request.json.get("completed", task["completed"])
     return jsonify({"message": "Task updated", "task": task})
 
-# Delete a task by ID
+
 @app.route("/tasks/<int:task_id>", methods=["DELETE"])
 def delete_task(task_id):
     global tasks
